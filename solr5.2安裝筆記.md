@@ -43,6 +43,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 ##資料匯入範本##
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_videos/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_programs/conf
+	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_content/conf
 
 
 ##安裝中文分詞套件##
@@ -56,6 +57,9 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 
 	cd /home/hans_huang/solr_conf/isch_programs
 	sudo cp *.*  /var/solr/data/isch_programs/conf/
+
+	cd /home/hans_huang/solr_conf/isch_content
+	sudo cp *.*  /var/solr/data/isch_content/conf/
 
 
 ##更新安全性設定##
