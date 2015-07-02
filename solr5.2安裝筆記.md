@@ -20,11 +20,14 @@
 	#sudo bash ./install_solr_service.sh solr-5.2.0.tgz -i /opt -d /var/solr -u solr -s solr -p 8983
 	sudo bash ./install_solr_service.sh solr-5.2.0.tgz
 
-	sudo mkdir /var/solr/data/isch
-	sudo chown -R solr:solr /var/solr
+	#For Demo
+	#sudo mkdir /var/solr/data/isch
+	#sudo chown -R solr:solr /var/solr
 	
+	#For Production
 	sudo mkdir /var/solr/data/isch_videos
 	sudo mkdir /var/solr/data/isch_programs
+	sudo mkdir /var/solr/data/isch_content
 	sudo chown -R solr:solr /var/solr
 	sudo chown -R solr:solr /storage/solr
 
