@@ -29,7 +29,7 @@
 #啟動 Protractor
 
 	cd protractordashboard
-	protractor protractorConf --suite vod_1_1
+	protractor protractorConf.js --suite vod_1_1
 
 #參考資料
 
