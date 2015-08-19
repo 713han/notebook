@@ -1,4 +1,4 @@
-#安裝Java 8 form Oracle##
+#安裝Java 8 form Oracle#
 
 [參考:http://linuxpilot.com/ubuntu-java](http://linuxpilot.com/ubuntu-java)
 
@@ -10,7 +10,7 @@
 使用 `java -version` 檢查訊息是否為 `java version "1.8.0_45"`
 
 
-#安裝Solr 5.2(需要root權限)##
+#安裝Solr 5.2(需要root權限)#
 [參考:https://cwiki.apache.org/confluence/display/solr/Taking+Solr+to+Production](https://cwiki.apache.org/confluence/display/solr/Taking+Solr+to+Production)
 
 	wget http://apache.stu.edu.tw/lucene/solr/5.2.0/solr-5.2.0.tgz
@@ -97,7 +97,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 	</dataConfig>
 
 
-##設定修改:schema.xml
+##設定修改:schema.xml##
 根據 data-config.xml 匯入的欄位修改 schema.xml  
 另外加入中文分詞分析器設定:
 
@@ -138,7 +138,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 	</fieldType>
 
 
-##設定修改:solrconfig.xml
+##設定修改:solrconfig.xml##
 
 `<requestHandler name="/dataimport" class="solr.DataImportHandler">`  
 修改為  
@@ -153,7 +153,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 `<str name="df">[預設查詢欄位 參考 schema.xml]</str>`
 
 
-##安全性修改:webdefault.xml
+##安全性修改:webdefault.xml##
 加入:  
 
 	<security-constraint>
@@ -172,7 +172,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 	</login-config>
 
 
-##安全性修改:jetty.xml
+##安全性修改:jetty.xml##
 加入:
 
 	<Call name="addBean">
@@ -185,7 +185,7 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 		</Arg>
 	</Call>
 
-##安全性修改:realm.properties
+##安全性修改:realm.properties##
 帳號:密碼,角色名稱  
 
 	username:password,search-role
