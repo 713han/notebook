@@ -29,6 +29,8 @@
 	sudo mkdir /var/solr/data/isch_programs
 	sudo mkdir /var/solr/data/isch_content
 	sudo mkdir /var/solr/data/isch_users
+	sudo mkdir /var/solr/data/avmax_videos
+	sudo mkdir /var/solr/data/avmax_users
 	sudo chown -R solr:solr /var/solr
 	sudo chown -R solr:solr /storage/solr
 
@@ -49,6 +51,8 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_programs/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_content/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_users/conf
+	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_videos/conf
+	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_users/conf
 
 
 ##安裝中文分詞套件##
@@ -68,6 +72,12 @@ SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 
 	cd /home/hans_huang/solr_conf/isch_users
 	sudo cp *.*  /var/solr/data/isch_users/conf/
+
+	cd /home/hans_huang/solr_conf/avmax_videos
+	sudo cp *.*  /var/solr/data/avmax_videos/conf/
+
+	cd /home/hans_huang/solr_conf/avmax_users
+	sudo cp *.*  /var/solr/data/avmax_users/conf/
 
 
 ##更新安全性設定##
