@@ -1,6 +1,6 @@
-## Install Android Facebook SDK ##
+# Install Android Facebook SDK #
 
-#Eclipse#
+##Eclipse##
 [參考:http://stackoverflow.com/questions/29379890/android-facebook-sdk-4-in-eclipse](http://stackoverflow.com/questions/29379890/android-facebook-sdk-4-in-eclipse)  
 
 * Step1. [Download Facebook SDK](https://developers.facebook.com/resources/facebook-android-sdk-current.zip)  
@@ -16,6 +16,9 @@ library下載:[link](http://mvnrepository.com/artifact/com.parse.bolts/bolts-and
 "Properties" > "Android" > Libary區塊 > Is Library 打勾
 * Step7. 將SDK加入要使用SDK的APP
 "Properties" > "Android" > "Library" > "Add", 加入建置好的 facebook SDK 專案.
+
+##IntelliJ##
+[參考:https://developers.facebook.com/docs/android/getting-started/](https://developers.facebook.com/docs/android/getting-started/)
 
 ## 設定Facebook APP ##
 

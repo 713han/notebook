@@ -13,3 +13,5 @@ check:
 	v4.1.1
 	hanshuang@VirtualBox:~$ npm -v
 	2.14.4
+
+[參考資料](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
