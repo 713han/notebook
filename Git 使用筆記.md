@@ -32,6 +32,4 @@
 	git remote show
 	
 	#檢視某個遠端除儲存庫詳細資訊
-	git remote show [NAME]
-	
-	
+	git remote show [NAME]	
