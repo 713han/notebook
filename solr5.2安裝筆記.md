@@ -38,8 +38,13 @@
 ##修改環境設定 ex:記憶體用量##
 	sudo vim /var/solr/solr.in.sh
 
-SOLR_HEAP="512m" => SOLR_HEAP="1024m"  
-SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
+	SOLR_HEAP="512m" => SOLR_HEAP="1024m"  
+	SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
+	SOLR_LOGS_DIRS=/services/solr/logs
+	
+	sudo vim /var/solr/log4j.properties
+	
+	solr.log=/services/solr/logs	log4j.rootLogger=WARN, file, CONSOLE	
 
 ##PATCH##
 	cd /home/hans_huang/solr_patch/
