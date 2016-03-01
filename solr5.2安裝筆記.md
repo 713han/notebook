@@ -23,7 +23,7 @@
 	#For Demo
 	#sudo mkdir /var/solr/data/isch
 	#sudo chown -R solr:solr /var/solr
-	
+
 	#For Production
 	sudo mkdir /var/solr/data/isch_videos
 	sudo mkdir /var/solr/data/isch_programs
@@ -31,6 +31,7 @@
 	sudo mkdir /var/solr/data/isch_users
 	sudo mkdir /var/solr/data/avmax_videos
 	sudo mkdir /var/solr/data/avmax_users
+	sudo mkdir /var/solr/data/isch_logs
 	sudo chown -R solr:solr /var/solr
 	sudo chown -R solr:solr /storage/solr
 
@@ -41,10 +42,10 @@
 	SOLR_HEAP="512m" => SOLR_HEAP="1024m"  
 	SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
 	SOLR_LOGS_DIRS=/services/solr/logs
-	
+
 	sudo vim /var/solr/log4j.properties
-	
-	solr.log=/services/solr/logs	log4j.rootLogger=WARN, file, CONSOLE	
+
+	solr.log=/services/solr/logs	log4j.rootLogger=WARN, file, CONSOLE
 
 ##PATCH##
 	cd /home/hans_huang/solr_patch/
@@ -58,6 +59,7 @@
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_users/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_videos/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_users/conf
+	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_logs/conf
 
 
 ##安裝中文分詞套件##
@@ -84,6 +86,9 @@
 	cd /home/hans_huang/solr_conf/avmax_users
 	sudo cp *.*  /var/solr/data/avmax_users/conf/
 
+	cd /home/hans_huang/solr_conf/isch_logs
+	sudo cp *.*  /var/solr/data/isch_logs/conf/
+
 
 ##更新安全性設定##
 	cd /home/hans_huang/solr_security
@@ -92,19 +97,19 @@
 
 ##設定修改:data-config.xml (sample)##
 	<dataConfig>
-		<dataSource type="JdbcDataSource" 
+		<dataSource type="JdbcDataSource"
 					driver="com.mysql.jdbc.Driver"
-					url="jdbc:mysql://[IP]:3306/[Database]" 
-					user="[帳號]" 
+					url="jdbc:mysql://[IP]:3306/[Database]"
+					user="[帳號]"
 					password="[密碼]"/>
 		<document>
 			<entity name="[ENTITY]"  
 					pk="id"
 					query="select id,context from [table]"
 					deltaImportQuery="SELECT id,context from [table] WHERE id='${dataimporter.delta.id}'"
-					deltaQuery="SELECT id FROM [table] WHERE updated_at > UNIX_TIMESTAMP('${dataimporter.last_index_time}')" 
+					deltaQuery="SELECT id FROM [table] WHERE updated_at > UNIX_TIMESTAMP('${dataimporter.last_index_time}')"
 					deletedPkQuery="SELECT id FROM [table] WHERE updated_at > UNIX_TIMESTAMP('${dataimporter.last_index_time}')" >
-				
+
 				<field column="id" name="id"/>
 				<field column="context" name="context"/>       
 			</entity>
@@ -122,19 +127,19 @@
 			<tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="dic"/>
 		</analyzer>
 	</fieldtype>
-	
+
 	<fieldtype name="textMaxWord" class="solr.TextField" positionIncrementGap="100">
 		<analyzer>
 			<tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word" />
 		</analyzer>
 	</fieldtype>
-	
+
 	<fieldtype name="textSimple" class="solr.TextField" positionIncrementGap="100">
 		<analyzer>
 			<tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="simple" />
 		</analyzer>
 	</fieldtype>
-	<!-- mmseg4j-->	
+	<!-- mmseg4j-->
 
 加入自訂分析器：
 
@@ -180,7 +185,7 @@
 			<role-name>search-role</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
+
 	<login-config>
 		<auth-method>BASIC</auth-method>
 		<realm-name>Solr</realm-name>
@@ -214,11 +219,3 @@
 ##TEST##
 	http://[SERVER]:8983/solr/
 	http://[SERVER]:8983/solr/[CORE]/select?q=[KEYWORD]&wt=json&indent=true
-
-
-
-
-
-
-
-
