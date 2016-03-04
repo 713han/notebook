@@ -57,6 +57,9 @@
 `sort=unix_time asc` 依據unix\_time 升冪排序  
 `sort=unix_time desc` 依據unix\_time 降冪排序
 
+###統計
+`stats.field=[欄位1]&stats.field=[欄位2]&stats=true`
+
 ###Solr command
 完整建立:  
 `http://[SERVER]:[PORT]/solr/[CORE]/dataimport?command=full-import&clean=true&commit=true&optimize=true&wt=json&indent=true&entity=[ENTITY]&verbose=false&debug=false`
@@ -69,5 +72,11 @@
 
 查詢狀態:  
 `http://[SERVER]:[PORT]/solr/[CORE]/dataimport?command=status&indent=true&wt=json`
+
+資料寫入:
+`curl -u [USERNAME]:[PASSWORD] -X POST -H 'Content-Type: application/json' 'http://[SERVER]:[PORT]/solr/[CORE]/update?commit=true' --data-binary '[{[OBJECT1]},{[OBJECT2]}]'`
+
+資料刪除:
+`curl -u [USERNAME]:[PASSWORD] -X POST -H 'Content-Type: application/json' 'http://[SERVER]:[PORT]/solr/[CORE]/update?commit=true' --data-binary '{"delete":{"query":"[QUERY]"}}'`
 
 

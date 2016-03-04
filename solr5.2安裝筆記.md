@@ -32,6 +32,7 @@
 	sudo mkdir /var/solr/data/avmax_videos
 	sudo mkdir /var/solr/data/avmax_users
 	sudo mkdir /var/solr/data/isch_logs
+	sudo mkdir /var/solr/data/isch_cloudfront
 	sudo chown -R solr:solr /var/solr
 	sudo chown -R solr:solr /storage/solr
 
@@ -45,7 +46,8 @@
 
 	sudo vim /var/solr/log4j.properties
 
-	solr.log=/services/solr/logs	log4j.rootLogger=WARN, file, CONSOLE
+	solr.log=/services/solr/logs
+	log4j.rootLogger=WARN, file, CONSOLE
 
 ##PATCH##
 	cd /home/hans_huang/solr_patch/
@@ -60,6 +62,7 @@
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_videos/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/avmax_users/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_logs/conf
+	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_cloudfront/conf
 
 
 ##安裝中文分詞套件##
@@ -88,6 +91,9 @@
 
 	cd /home/hans_huang/solr_conf/isch_logs
 	sudo cp *.*  /var/solr/data/isch_logs/conf/
+
+	cd /home/hans_huang/solr_conf/isch_cloudfront
+	sudo cp *.*  /var/solr/data/isch_cloudfront/conf/
 
 
 ##更新安全性設定##
