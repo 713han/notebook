@@ -33,3 +33,13 @@
 
 	#檢視某個遠端除儲存庫詳細資訊
 	git remote show [NAME]
+
+	#命令檢視遠端多餘的分支：EX:  branch_XXXX_XXXX new ( next fetch will store in remotes/origin)
+	git remote show origin
+	
+	#從遠端倉庫更新信息，可以到./git/log/refs/remotes/origin目錄下查看分支信息。
+	git fetch origin
+
+	
+	
+	
