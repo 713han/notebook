@@ -1,0 +1,65 @@
+111111
+222222
+333333
+#顯示Git設定
+git config --list
+
+#初次設定
+git config --global user.name "[NAME]"
+git config --global user.email [EMAIL]
+
+#Clone Git 專案
+git clone [SSH網址 ex:git@github.com:713han/notebook.git]
+
+#檢視分支
+git branch
+
+#建立分支
+git branch [NAME]
+
+#檢查專案狀況
+git checkout
+
+#切換分支
+git checkout [NAME]
+333333
+#合併分支
+git merge [NAME]
+
+#增加遠端儲存庫
+git remote add [NAME ex:origin] [URL ex:git@github.com:713han/notebook.git]
+
+#檢視遠端儲存庫
+git remote show
+
+#檢視某個遠端除儲存庫詳細資訊
+git remote show [NAME]
+
+系統層級 (System-level configuration) (設定於整台電腦，所有使用者的預設值)
+git config --system --list
+預設路徑: C:\Program Files (x86)\Git\etc\gitconfig
+或是路徑: %LOCALAPPDATA%\VirtualStore\Program Files (x86)\Git\etc\gitconfig 
+補充參考: VirtualStore - Inside Windows Vista User Account Control
+使用者層級 (User-level configuration) (設定於目前登入的使用者)
+git config --global --list
+預設路徑: C:\Users\<使用者帳號>\.gitconfig      (這是個檔案)
+常用指令
+最常見的設定就是 user 區段下的 name 與 email 參數，第一次用 Git 一定要設定!
+git config --global user.name "John Doe"
+git config --global user.email "johndoe@example.com"
+在 Linux 底下可以指定編輯器
+git config --global core.editor vim
+在Windows底下，最好打開 core.autocrlf 選項，讓 commit 的檔案沒有 CR 字元 
+( 純 Windows 開發環境，可以設定為 false；跨平台協同開發，建議設定為 true )
+git config --global core.autocrlf true
+自動訂正打錯的參數，例如 git statsu 會自動修正為 git status 讓你不用重打一次
+git config --global help.autocorrect 1
+儲存區層級 (Repository-level configuration)
+git config --list
+預設路徑: <Git儲存區>\.git\config
+Git 執行環境中，三個不同設定層級的套用順序
+
+儲存區層級 (優先權最高) > 使用者層級 > 系統層級 (優先權最低)
+使用 git config --list 取出參數時，會顯示所有層級的參數，但越下方的參數優先權越高。 
+如下範例，user.email 出現過兩次，下方的 user.email 將會被套用 (因為它定義在儲存區層級)
+

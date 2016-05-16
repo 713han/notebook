@@ -46,3 +46,14 @@
 
 		#4.更新遠端分支
 		git push -u origin master
+
+	#命令檢視遠端多餘的分支：EX:  branch_XXXX_XXXX new ( next fetch will store in remotes/origin)
+	git remote show origin
+	
+	#從遠端倉庫更新信息，可以到./git/log/refs/remotes/origin目錄下查看分支信息。
+	git fetch origin
+
+	
+	
+	
+>>>>>>> debug01ZY
