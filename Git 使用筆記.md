@@ -33,3 +33,16 @@
 
 	#檢視某個遠端除儲存庫詳細資訊
 	git remote show [NAME]
+
+	#在Client下合併遠端分支
+		#1.切換回master
+		git checkout master
+
+		#2.檢查master有無異動並更新
+		git pull
+
+		#3.合併遠端分支
+		git pull origin/[遠端分支名稱]
+
+		#4.更新遠端分支
+		git push -u origin master
