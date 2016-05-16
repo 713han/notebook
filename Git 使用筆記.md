@@ -53,7 +53,8 @@
 	#從遠端倉庫更新信息，可以到./git/log/refs/remotes/origin目錄下查看分支信息。
 	git fetch origin
 
+	#上傳新建分支到遠端儲存庫產生該分支
+	git push -u origin [branch name]
 	
 	
-	
->>>>>>> debug01ZY
+
