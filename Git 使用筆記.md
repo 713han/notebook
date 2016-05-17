@@ -59,3 +59,6 @@
 	#上傳修改變動的地方到本地版次儲存庫
 	git add .
 	git commit -m "del testDEBUG & edit git使用筆記"
+
+	#刪除最後一個commit
+	git reset -hard HEAD~1
