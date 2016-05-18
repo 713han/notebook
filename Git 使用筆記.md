@@ -58,4 +58,44 @@
 
 	#上傳修改變動的地方到本地版次儲存庫
 	git add .
-	git commit -m "del testDEBUG & edit git使用筆記"
+	git commit -m "註解"
+	
+	#抓取遠端分支到本地
+	git checkout origin/[branch name]
+	git checkout -b [branch name]
+	
+	##若要看已經暫存起來的文件和上次提交時的快照之間的差異
+	git diff --cached
+	
+	#關閉 diff 畫面
+	q
+	
+	#文件脫離git的版本管理，但不是會刪除它.
+	git rm --cached file
+	
+	#資料夾內脫離git的版本管理，但不是會刪除它.
+	git rm -r --cached file
+	
+	#如果系統中有一些配置文件在服務器上做了配置修改,然後後續開發又新添加一些配置項的時候,在發布這個配置文件的時候,會發生代碼衝突:
+	#error: Your local changes to the following files would be overwritten by merge:
+	#		protected/config/main.php
+	#Please, commit your changes or stash them before you can merge.
+	#如果希望保留生產服務器上所做的改動,僅僅併入新配置項, 處理方法如下:
+	git stash
+	git pull
+	git stash pop
+
+		#然後可以使用Git diff -w +文件名 來確認代碼自動合併的情況.
+		#反過來,如果希望用代碼庫中的文件完全覆蓋本地工作版本. 方法如下:
+		git reset --hard
+		git pull
+
+		#其中git reset是針對版本,如果想針對文件回退本地修改,使用
+		git checkout HEAD file/to/restore  
+	
+	
+	
+	
+	
+	
+	
