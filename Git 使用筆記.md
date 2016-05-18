@@ -99,3 +99,9 @@
 	
 	
 	
+=======
+	git commit -m "del testDEBUG & edit git使用筆記"
+
+	#刪除最後一個commit
+	git reset -hard HEAD~1
+>>>>>>> 9fb22a590e9eef31a3d3f3ec0ff3dd7ba344a605
