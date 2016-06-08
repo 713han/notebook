@@ -92,16 +92,10 @@
 
 		#其中git reset是針對版本,如果想針對文件回退本地修改,使用
 		git checkout HEAD file/to/restore  
-	
-	
-	
-	
-	
-	
-	
-=======
-	git commit -m "del testDEBUG & edit git使用筆記"
 
-	#刪除最後一個commit
+
+	#刪除最後一個commit(本地退版)
 	git reset -hard HEAD~1
->>>>>>> 9fb22a590e9eef31a3d3f3ec0ff3dd7ba344a605
+
+	#本地退版後強制讓遠端伺服器也跟著退版
+	git push -f -u origin master
