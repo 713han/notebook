@@ -12,4 +12,8 @@
 	#一次轉出所有檔案(Ｗindows)
 	for %%A IN (*.mpg) DO ffmpeg -i "%%A" "%%A.mp4"
 	
-	
+	#一次轉出所有檔案(Mac)
+	for A in *.MOV;do ffmpeg -i "$A" -c copy -bsf:v h264_mp4toannexb -f mpegts "$A.ts";done
+
+	#影片合併
+	ffmpeg -i "concat:CAR_0149.MOV.ts|CAR_0150.MOV.ts|CAR_0151.MOV.ts ..." -c copy -bsf:a aac_adtstoasc output.mp4
