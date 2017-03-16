@@ -10,7 +10,8 @@
 使用 `java -version` 檢查訊息是否為 `java version "1.8.0_45"`
 
 
-#安裝Solr 5.2(需要root權限)#
+#安裝Solr 5.2(需要root權限)
+
 [參考:https://cwiki.apache.org/confluence/display/solr/Taking+Solr+to+Production](https://cwiki.apache.org/confluence/display/solr/Taking+Solr+to+Production)
 
 	wget http://apache.stu.edu.tw/lucene/solr/5.2.0/solr-5.2.0.tgz
@@ -37,7 +38,8 @@
 	sudo chown -R solr:solr /storage/solr
 
 
-##修改環境設定 ex:記憶體用量##
+#修改環境設定 ex:記憶體用量
+
 	sudo vim /var/solr/solr.in.sh
 
 	SOLR_HEAP="512m" => SOLR_HEAP="1024m"  
@@ -49,12 +51,14 @@
 	solr.log=/services/solr/logs
 	log4j.rootLogger=WARN, file, CONSOLE
 
-##PATCH##
+#PATCH#
+
 	cd /home/hans_huang/solr_patch/
 	sudo cp *.js  /opt/solr/server/solr-webapp/webapp/js/lib/
 
 
-##資料匯入範本##
+#資料匯入範本#
+
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_videos/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_programs/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_content/conf
@@ -64,13 +68,13 @@
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_logs/conf
 	sudo cp -a /opt/solr/example/example-DIH/solr/solr/conf /var/solr/data/isch_cloudfront/conf
 
+#安裝中文分詞套件#
 
-##安裝中文分詞套件##
 	cd /home/hans_huang/solr_lib/
 	sudo cp *.*  /opt/solr/server/solr-webapp/webapp/WEB-INF/lib/
 
+#更新設定檔#
 
-##更新設定檔##
 	cd /home/hans_huang/solr_conf/isch_videos
 	sudo cp *.*  /var/solr/data/isch_videos/conf/
 
@@ -95,13 +99,13 @@
 	cd /home/hans_huang/solr_conf/isch_cloudfront
 	sudo cp *.*  /var/solr/data/isch_cloudfront/conf/
 
+#更新安全性設定#
 
-##更新安全性設定##
 	cd /home/hans_huang/solr_security
 	sudo cp jetty.xml webdefault.xml realm.properties /opt/solr/server/etc/
 
+#設定修改:data-config.xml (sample)#
 
-##設定修改:data-config.xml (sample)##
 	<dataConfig>
 		<dataSource type="JdbcDataSource"
 					driver="com.mysql.jdbc.Driver"
@@ -115,15 +119,13 @@
 					deltaImportQuery="SELECT id,context from [table] WHERE id='${dataimporter.delta.id}'"
 					deltaQuery="SELECT id FROM [table] WHERE updated_at > UNIX_TIMESTAMP('${dataimporter.last_index_time}')"
 					deletedPkQuery="SELECT id FROM [table] WHERE updated_at > UNIX_TIMESTAMP('${dataimporter.last_index_time}')" >
-
 				<field column="id" name="id"/>
 				<field column="context" name="context"/>       
 			</entity>
 		</document>
 	</dataConfig>
 
-
-##設定修改:schema.xml##
+#設定修改:schema.xml#
 根據 data-config.xml 匯入的欄位修改 schema.xml  
 另外加入中文分詞分析器設定:
 
@@ -163,8 +165,7 @@
 		</analyzer>
 	</fieldType>
 
-
-##設定修改:solrconfig.xml##
+#設定修改:solrconfig.xml#
 
 `<requestHandler name="/dataimport" class="solr.DataImportHandler">`  
 修改為  
@@ -179,7 +180,7 @@
 `<str name="df">[預設查詢欄位 參考 schema.xml]</str>`
 
 
-##安全性修改:webdefault.xml##
+#安全性修改:webdefault.xml#
 加入:  
 
 	<security-constraint>
@@ -197,8 +198,7 @@
 		<realm-name>Solr</realm-name>
 	</login-config>
 
-
-##安全性修改:jetty.xml##
+#安全性修改:jetty.xml#
 加入:
 
 	<Call name="addBean">
@@ -211,17 +211,15 @@
 		</Arg>
 	</Call>
 
-##安全性修改:realm.properties##
+#安全性修改:realm.properties#
 帳號:密碼,角色名稱  
 
 	username:password,search-role
 
-
-#開啟防火牆##
+#開啟防火牆#
 	sudo ufw allow in 8983
 	sudo ufw allow out 8983
 
-
-##TEST##
+#TEST#
 	http://[SERVER]:8983/solr/
 	http://[SERVER]:8983/solr/[CORE]/select?q=[KEYWORD]&wt=json&indent=true
