@@ -41,6 +41,12 @@
 #修改環境設定 ex:記憶體用量
 
 	sudo vim /var/solr/solr.in.sh
+	# 註解掉以下區塊 
+	# http://stackoverflow.com/questions/31011818/solr-5-1-solr-is-creating-way-too-many-log-files
+	# Enable verbose GC logging
+	#GC_LOG_OPTS="-verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails \
+    #-XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps 
+    #-XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime".
 
 	SOLR_HEAP="512m" => SOLR_HEAP="1024m"  
 	SOLR_TIMEZONE="UTC" => SOLR_TIMEZONE="GMT+8"
